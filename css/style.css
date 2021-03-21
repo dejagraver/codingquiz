@@ -19,7 +19,7 @@ header p {
     padding-inline-start: 28%;
 }
 
-.scorebtn {
+.quiz {
     display: flex;
     justify-content: flex-start;
     max-width: 20%; 
