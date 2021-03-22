@@ -29,7 +29,33 @@ var questions = [
     }
 ]
 
+
+var score = 0;
+var timer;
+var timeRemaining = 0;
+var score = 0;
+
 //Start Quiz Button
+function startQuiz() {
+    timeRemaining = 60;
+    document.getElementById("time").innerHTML = timeRemaining;
+
+    timer = setInterval(function() {
+        timeRemaining--;
+        document.getElementById("time").innerHTML = timeRemaining;
+
+        if (timeRemaining <= 0) {
+            clearInterval(timer);
+            endQuiz();
+        }
+    }, 1000);
+    next();
+}
+
+function endQuiz() {
+    clearInterval(timer);
+
+}
 let question = document.getElementById("question");
 let options = Array.from(documenet.getElementByClassName("options-text"))
 
@@ -38,7 +64,6 @@ var allQuestions = {};
 //Confirmation of choice selection
 var correctAnswers = true;
 var currentIndex = 0;
-var score = 0;
 //What question you are currently iterating on
 var questionLevel = 0;
 var allQuestions = {};
@@ -49,29 +74,6 @@ var availableQuestions = [];
 //Click Start Quiz button
 //countdown function timer for the questions to be answered with in 
 //when countdown stops so does the quiz
-function startTimer(duration, display) {
-    console.log(startTimer)
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-        timer -= 1;
-        if (timer <= 0) {
-            clearInterval(timer);
-        }
-    }, 1000);
-}
-window.onclick  = function () {
-    var oneMinute = 60 * 1,
-        display = document.querySelector('#time');
-    startTimer(oneMinute, display);
-};
 
 
 // Click start button
