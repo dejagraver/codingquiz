@@ -1,4 +1,3 @@
-//Start Quiz Button
 
 //create your (array full of quetions )objects 
 var questions = [
@@ -30,9 +29,23 @@ var questions = [
     }
 ]
 
-var currentIndex = 0
-var score = [];
+//Start Quiz Button
+let question = document.getElementById("question");
+let options = Array.from(documenet.getElementByClassName("options-text"))
 
+
+var allQuestions = {};
+//Confirmation of choice selection
+var correctAnswers = true;
+var currentIndex = 0;
+var score = 0;
+//What question you are currently iterating on
+var questionLevel = 0;
+var allQuestions = {};
+var correctAnswers = true;
+var score = 0;
+var questionLevel = 0;
+var availableQuestions = [];
 //Click Start Quiz button
 //countdown function timer for the questions to be answered with in 
 //when countdown stops so does the quiz

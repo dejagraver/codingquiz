@@ -18,8 +18,16 @@ h1, h2, h3, h4 {
 h1 {
     font-size: 3rem;
     font-weight: 300;
+    margin-bottom: 5rem;
 }
 
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 50;
+}
+
+h3 
 .skeleton {
     width: 100vw;
     height: 100vh;
@@ -66,16 +74,51 @@ h1 {
     padding: 1.2rem ;
     width: 30rem;
     text-align: center;
-    border: orange 0.2rem solid;
+    border:lavenderblush 0.2rem solid;
     border-radius: 0.5rem;
     text-decoration: none;
-    background-color: blanchedalmond;
+    background-color:lavender;
     margin-bottom: 1rem;
 }
 
 .btn:hover {
     cursor: pointer;
     box-shadow: 0 0.4rem 1.4rem 0 lightgray;
+    transition: transform 200ms;
+}
+
+.btn[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: not-allowed;
+    transform: not-allowed;
+}
+
+/* Game.html CSS */
+
+.options-container {
+    display: flex;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    font-size: 1.8rem;
+    border: 0.1rem solid transparent;
+    border-radius: 0.5rem;
+    background-color: white;
+}
+
+.options-container:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 lightgray;
+    transition: transform 200ms;
+}
+
+.options-prefix {
+    padding: 1rem 2 rem;
+    background-color:lavender;
+    color: black
+}
+
+.options.text {
+    padding: 1.5rem;
 }
 
 
