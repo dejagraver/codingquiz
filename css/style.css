@@ -1,3 +1,85 @@
+:root {
+    background-color: ghostwhite;
+    font-size: 75.5%;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+.skeleton {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.skeleton > * {
+    width: 100%;
+}
+
+.skeleton a {
+    display: flex;
+    justify-content: space-between;
+}
+
+.instructions {
+    font-size: 4rem;
+    font-style: italic;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: row;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    font-size: 2rem;
+    padding: 1.2rem ;
+    width: 30rem;
+    text-align: center;
+    border: orange 0.2rem solid;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    background-color: blanchedalmond;
+    margin-bottom: 1rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 lightgray;
+}
+
+
+/* 
 .theme {
     background-color: ghostwhite;
     font-family: Verdana, Geneva, Tahoma, sans-serif; 
@@ -37,4 +119,4 @@ header p {
 .startbtn {
     display:inline-block;
 }
-
+ */
