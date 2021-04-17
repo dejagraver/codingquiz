@@ -49,9 +49,19 @@ var submitButton = document.createElement ("button")
 
 
 //Timer for when you start the game 
-function startQuiz() {
-  
-    }, 
+function startQuizTimer() {
+  timer = setInterval(fucntion(){
+      time--;
+      document.querySelector(".time-score").textContent = "Time Remaining;";
+
+      if (timeRemaining < 0){
+          document.querySelector(".quiz").remove();
+          alert("You lost");
+          restartQuiz();
+      }
+  },1000);
+    }
+
     //clear timer
 
     //function that will
@@ -62,8 +72,11 @@ function createSkeleton {
 //grab current question and update the different portions of that div as questions are answered 
 //
 function displayQuestions() {
-    var currentQuestion 
-}
+    questionDisplayed.textContent = questions[qIndex].q;
+    optionsDisplayed.textContent = questions[optionsIndex].options;
+    questionIndex++;
+    optionsIndex++;
+},
 //clear out any of the previous questions option
 //once thats done you need to loop over to the
 
