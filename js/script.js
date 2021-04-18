@@ -29,24 +29,36 @@ var questions = [
 ]
 
 // Set values for the functions 
+var screenChange = 1;
+
 var currentQuestion = 0;
-var score = 0;
+
 var timer;
 var timeRemaining = 0;
+
 var highScore = [];
+var score = 0;
 
 //Selecting the Quiz divs for information to be input with in 
 var codingQuizDiv = document.querySelector(".quiz");
 var scoreBoardDiv = document.querySelector(".time-score")
+var answerButton = document.querySelector("#answer");
+
 
 ///create elements
 var startQuizPage = document.createElement("div");
 var questionDisplayed = document.createElement("div");
-var answerButton = document.createElement("div");
 var showHighScore = document.createElement("label");
 var enterHighScore = document.createElement("input");
 var submitButton = document.createElement ("button")
 
+//Create Home Page 
+function homePage(){
+    var displayTime = document.createElement("div");
+    var displayHighScore = document.createElement("button");
+    var displayStartButton = document.createElement("button");
+    var displayDescription = document.createElement("div");
+}
 
 //Timer for when you start the game 
 function startQuizTimer() {
@@ -61,22 +73,53 @@ function startQuizTimer() {
       }
   },1000);
     }
+function endQuizTimer(){
+    clearInterval(timer)
+},
 
     //clear timer
 
-    //function that will
-function createSkeleton {
+//When a button is clicked, next page and next question 
+function clickListener() {
+    if (answerButton).onclick() {
 
+    } 
 }
+var startQuizPage = document.createElement("div");
+
+
 //have a function solely for displaying the questions that have been stored in the object above 
 //grab current question and update the different portions of that div as questions are answered 
 //
 function displayQuestions() {
-    questionDisplayed.textContent = questions[qIndex].q;
-    optionsDisplayed.textContent = questions[optionsIndex].options;
-    questionIndex++;
-    optionsIndex++;
-},
+    var questionContainer = document.createElement("div");
+    questionContainer.className = "quiz-questions";
+
+    var questionAsked = document.createElement("h1");
+    questionAsked.textContent = questions[currentQuestion].q;
+
+    questionContainer.appendChild(questionAsked);
+    questionConatiner.appendChild(answerButton(questions[currentQuestion.options]));
+    codingQuizDiv.appendChild(questionContainer);
+
+    answerButton[0].textContent = questions[currentQuestion].options[0];
+    answerButton[1].textContent = questions[currentQuestion].options[1];
+    answerButton[2].textContent = questions[currentQuestion].options[2];
+    answerButton[3].textContent = questions[currentQuestion].options[3];
+
+    for (i = 0; i < answerButton.length; i++) {
+        answerButton[i].addEventListener('click', checkAnswer);
+    }
+}
+displayQuestions.addEventListener('click', startQuizTimer);
+
+function checkAnswer(event) {
+    if (event.target.textContent === questions[currentQuestion].a)
+        alert("correct")
+        currentQuestion++;
+        score++;
+}
+
 //clear out any of the previous questions option
 //once thats done you need to loop over to the
 
