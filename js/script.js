@@ -29,7 +29,6 @@ var questions = [
 ]
 
 // Set values for the functions 
-var screenChange = 1;
 
 var currentQuestion = 0;
 
@@ -60,7 +59,7 @@ var submitButton = document.createElement ("button");
 function startQuizTimer() {
   timer = setInterval(function(){
       time--;
-      document.querySelector(".time").textContent = "Time Remaining: ";
+      document.querySelector(".time").textContent = "Time Remaining: " + time;
 
       if (time < 0){
           document.querySelector(".quiz").remove();
@@ -81,6 +80,7 @@ function endQuizTimer(){
 //
 function displayQuestions() {
     //create container to display the question
+    document.getElementById("click").style.display = "none"
     var codingQuizDiv = document.querySelector(".quiz");
 
     var questionContainer = document.createElement("div");
@@ -107,15 +107,6 @@ function displayQuestions() {
 document.getElementById("click").addEventListener('click', startQuizTimer);
 
 
-function displayButtons() {
-    var startButton = document.getElementById("click");
-    if (startButton.style.display === "none") {
-      startButton.style.display = "block";
-    } else {
-      startButton.style.display = "none";
-    }
-  }
-
 //hide start button after its clicked
 //change the way the div is appended, so the question is above the options 
 //see why the event listener is not responding for options when they are clicked, could be something with the check answer
@@ -130,6 +121,7 @@ function checkAnswer(event) {
         endQuiz();
     } else {
         nextQuestion(currentQuestion);
+        time--;
     };
 }
 
@@ -145,7 +137,7 @@ function checkAnswers() {
 }
 
 //Timer for when you end the game 
-function endQuiz() {
+function restartQuiz() {
     clearInterval(timer);
 // overview of the quiz results where youll input the name tag
 // followed by a onclick the button html tag
