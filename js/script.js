@@ -33,6 +33,7 @@ var screenChange = 1;
 
 var currentQuestion = 0;
 
+var time = 100
 var timer;
 var timeRemaining = 0;
 
@@ -48,76 +49,88 @@ var answerButton = document.querySelector("#answer");
 ///create elements
 var startQuizPage = document.createElement("div");
 var questionDisplayed = document.createElement("div");
+
 var showHighScore = document.createElement("label");
 var enterHighScore = document.createElement("input");
-var submitButton = document.createElement ("button")
 
-//Create Home Page 
-function homePage(){
-    var displayTime = document.createElement("div");
-    var displayHighScore = document.createElement("button");
-    var displayStartButton = document.createElement("button");
-    var displayDescription = document.createElement("div");
-}
+var submitButton = document.createElement ("button");
+
 
 //Timer for when you start the game 
 function startQuizTimer() {
-  timer = setInterval(fucntion(){
+  timer = setInterval(function(){
       time--;
-      document.querySelector(".time-score").textContent = "Time Remaining;";
+      document.querySelector(".time").textContent = "Time Remaining: ";
 
-      if (timeRemaining < 0){
+      if (time < 0){
           document.querySelector(".quiz").remove();
           alert("You lost");
           restartQuiz();
       }
   },1000);
     }
+
 function endQuizTimer(){
     clearInterval(timer)
-},
-
-    //clear timer
-
-//When a button is clicked, next page and next question 
-function clickListener() {
-    if (answerButton).onclick() {
-
-    } 
 }
-var startQuizPage = document.createElement("div");
+    //clear timer
 
 
 //have a function solely for displaying the questions that have been stored in the object above 
 //grab current question and update the different portions of that div as questions are answered 
 //
 function displayQuestions() {
+    //create container to display the question
+    var codingQuizDiv = document.querySelector(".quiz");
+
     var questionContainer = document.createElement("div");
-    questionContainer.className = "quiz-questions";
+    questionContainer.className = "quiz-container";
 
+    //create DOM element for the question
     var questionAsked = document.createElement("h1");
+    //.textContent to displayy the question (q) from questions array
     questionAsked.textContent = questions[currentQuestion].q;
+    questionAsked.className = "quiz-question";
 
+    //attach question to the container
     questionContainer.appendChild(questionAsked);
-    questionConatiner.appendChild(answerButton(questions[currentQuestion.options]));
-    codingQuizDiv.appendChild(questionContainer);
+    //attach option buttons to the quiz section(codingQuizDiv)from HTML
+    codingQuizDiv.appendChild(questionAsked);
 
-    answerButton[0].textContent = questions[currentQuestion].options[0];
-    answerButton[1].textContent = questions[currentQuestion].options[1];
-    answerButton[2].textContent = questions[currentQuestion].options[2];
-    answerButton[3].textContent = questions[currentQuestion].options[3];
 
-    for (i = 0; i < answerButton.length; i++) {
-        answerButton[i].addEventListener('click', checkAnswer);
+    for (i = 0; i < questions[currentQuestion].options.length; i++){
+        var answerArray = document.getElementsByClassName("answer");
+        answerArray[i].textContent = questions[currentQuestion].options[i];
+        answerArray[i].addEventListener('click', checkAnswer);
     }
 }
-displayQuestions.addEventListener('click', startQuizTimer);
+document.getElementById("click").addEventListener('click', startQuizTimer);
+
+
+function displayButtons() {
+    var startButton = document.getElementById("click");
+    if (startButton.style.display === "none") {
+      startButton.style.display = "block";
+    } else {
+      startButton.style.display = "none";
+    }
+  }
+
+//hide start button after its clicked
+//change the way the div is appended, so the question is above the options 
+//see why the event listener is not responding for options when they are clicked, could be something with the check answer
+
 
 function checkAnswer(event) {
-    if (event.target.textContent === questions[currentQuestion].a)
+    if (event.target.textContent === questions[currentQuestion].a){
         alert("correct")
         currentQuestion++;
         score++;
+    } else if (currentQuestion === questions.length) {
+        endQuiz();
+    } else {
+        nextQuestion(currentQuestion);
+    };
 }
 
 //clear out any of the previous questions option
