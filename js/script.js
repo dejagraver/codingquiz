@@ -123,16 +123,16 @@ function checkAnswer(event) {
 }
 
 
-// function setScore(){
-//     localStorage.setItem("scores", JSON.stringify(highScore));
-// }
-// function getScore(){
-//     var setScore = localStorage.getItem("scores");
+function setScore(){
+    localStorage.setItem("scores", JSON.stringify(highScore));
+}
+function getScore(){
+    var setScore = localStorage.getItem("scores");
 
-//     if(!setScore){ highScore = [];}
+    if(!setScore){ highScore = [];}
    
-//     highScore = JSON.parse(setScore);
-// }
+    highScore = JSON.parse(setScore);
+}
 
 
 //clear out any of the previous questions option
