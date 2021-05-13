@@ -111,6 +111,7 @@ function checkAnswer(event) {
     if (event.target.textContent === questions[currentQuestion].a){
         alert("correct")
         setScore();
+        console.log(setScore());
     } else if (currentQuestion === questions.length-1) {
         scoreBoard();
     } else {
@@ -164,20 +165,23 @@ function scoreBoard() {
     var boardContainer = document.createElement("div");
     boardContainer.className = "board-container";
 
-    var highScore = document.createElement("label");
-    highScore.textContent = "Enter high score: ";
-
     var enterHighScore = document.createElement("input");
     enterHighScore.className = "enter-name";
     enterHighScore.setAttribute("type", "text");
     enterHighScore.setAttribute("placeholder", "Enter Initials");
 
+    var highScore = document.createElement("label");
+    highScore.textContent = "Enter name: ";
+
     var saveButton = document.createElement("button");
     saveButton.textContent = "Save";
     saveButton.className = ".score-button";
 
+    boardContainer.appendChild(enterHighScore);   
     boardContainer.appendChild(highScore);
-    enterHighScore.appendChild(boardContainer);
+    boardContainer.appendChild(saveButton); 
+    codingQuizDiv.appendChild(boardContainer);
+
 
     clearInterval(timer)
 // overview of the quiz results where youll input the name tag
