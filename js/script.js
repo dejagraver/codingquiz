@@ -34,10 +34,8 @@ var currentQuestion = 0;
 
 var time = 100
 var timer;
-var timeRemaining = 0;
 
 var highScore = [];
-var score = 0;
 
 //Selecting the Quiz divs for information to be input with in 
 var codingQuizDiv = document.querySelector(".quiz");
@@ -49,10 +47,6 @@ var answerButton = document.querySelector("#answer");
 var startQuizPage = document.createElement("div");
 var questionDisplayed = document.createElement("div");
 
-var showHighScore = document.createElement("label");
-var enterHighScore = document.createElement("input");
-
-var submitButton = document.createElement ("button");
 
 
 //Timer for when you start the game 
@@ -74,17 +68,19 @@ function endQuizTimer(){
 }
     //clear timer
 
-
 //have a function solely for displaying the questions that have been stored in the object above 
 //grab current question and update the different portions of that div as questions are answered 
-//
+
 function displayQuestions() {
     //create container to display the question
     document.getElementById("click").style.display = "none"
-    var codingQuizDiv = document.querySelector(".quiz");
+    // var codingQuizDiv = document.querySelector(".quiz");
 
     var questionContainer = document.createElement("div");
     questionContainer.className = "quiz-container";
+
+    var questionsDiv = document.querySelector(".questions");
+    questionsDiv.innerHTML = "";
 
     //create DOM element for the question
     var questionAsked = document.createElement("h1");
@@ -94,8 +90,9 @@ function displayQuestions() {
 
     //attach question to the container
     questionContainer.appendChild(questionAsked);
+    questionsDiv.appendChild(questionContainer);
     //attach option buttons to the quiz section(codingQuizDiv)from HTML
-    codingQuizDiv.appendChild(questionAsked);
+    // codingQuizDiv.appendChild(questionAsked);
 
 
     for (i = 0; i < questions[currentQuestion].options.length; i++){
@@ -106,24 +103,37 @@ function displayQuestions() {
 }
 document.getElementById("click").addEventListener('click', startQuizTimer);
 
-
 //hide start button after its clicked
 //change the way the div is appended, so the question is above the options 
 //see why the event listener is not responding for options when they are clicked, could be something with the check answer
 
-
 function checkAnswer(event) {
     if (event.target.textContent === questions[currentQuestion].a){
         alert("correct")
-        currentQuestion++;
-        score++;
-    } else if (currentQuestion === questions.length) {
-        endQuiz();
+        setScore();
+    } else if (currentQuestion === questions.length-1) {
+        scoreBoard();
     } else {
-        nextQuestion(currentQuestion);
-        time--;
+        currentQuestion++;
+        displayQuestions();
+        setScore();
+        time-= 10;
     };
+    
 }
+
+
+// function setScore(){
+//     localStorage.setItem("scores", JSON.stringify(highScore));
+// }
+// function getScore(){
+//     var setScore = localStorage.getItem("scores");
+
+//     if(!setScore){ highScore = [];}
+   
+//     highScore = JSON.parse(setScore);
+// }
+
 
 //clear out any of the previous questions option
 //once thats done you need to loop over to the
@@ -132,17 +142,47 @@ function checkAnswer(event) {
 //once questions are displayed
 //you clear the function 
 
-function checkAnswers() {
+// function scoreBoard() {
+//     var enterName = document.createElement("input");
 
-}
+//     var showHighScore = document.createElement("label");
+// }
+
+//clear out any of the previous questions option
+//once thats done you need to loop over to the
+
+//create a div for the questions to display 
+//once questions are displayed
+//you clear the function 
 
 //Timer for when you end the game 
-function restartQuiz() {
-    clearInterval(timer);
+
+function scoreBoard() {
+    document.querySelector(".quiz").remove();
+    document.querySelector(".questions").remove();
+
+    var boardContainer = document.createElement("div");
+    boardContainer.className = "board-container";
+
+    var highScore = document.createElement("label");
+    highScore.textContent = "Enter high score: ";
+
+    var enterHighScore = document.createElement("input");
+    enterHighScore.className = "enter-name";
+    enterHighScore.setAttribute("type", "text");
+    enterHighScore.setAttribute("placeholder", "Enter Initials");
+
+    var saveButton = document.createElement("button");
+    saveButton.textContent = "Save";
+    saveButton.className = ".score-button";
+
+    boardContainer.appendChild(highScore);
+    enterHighScore.appendChild(boardContainer);
+
+    clearInterval(timer)
 // overview of the quiz results where youll input the name tag
 // followed by a onclick the button html tag
 }
-
 
 //getting the object of questions and asnwers into my page 
 //document.getelemnt by id/queryselctor etc... pop in the object value 
