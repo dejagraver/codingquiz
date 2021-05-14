@@ -39,7 +39,7 @@ var highScore = [];
 
 //Selecting the Quiz divs for information to be input with in 
 var codingQuizDiv = document.querySelector(".quiz");
-var scoreBoardDiv = document.querySelector(".time-score")
+var scoreBoardDiv = document.querySelector("scoreboard")
 var answerButton = document.querySelector("#answer");
 
 
@@ -162,17 +162,19 @@ function scoreBoard() {
     document.querySelector(".quiz").remove();
     document.querySelector(".questions").remove();
 
+    var displayScoreBoard = document.querySelector(".quiz");
+
     var boardContainer = document.createElement("div");
     boardContainer.className = "board-container";
+
+    var highScore = document.createElement("label");
+    highScore.textContent = "High Score: ";
 
     var enterHighScore = document.createElement("input");
     enterHighScore.className = "enter-name";
     enterHighScore.setAttribute("type", "text");
     enterHighScore.setAttribute("placeholder", "Enter Initials");
-
-    var highScore = document.createElement("label");
-    highScore.textContent = "Enter name: ";
-
+   
     var saveButton = document.createElement("button");
     saveButton.textContent = "Save";
     saveButton.className = ".score-button";
@@ -180,7 +182,7 @@ function scoreBoard() {
     boardContainer.appendChild(enterHighScore);   
     boardContainer.appendChild(highScore);
     boardContainer.appendChild(saveButton); 
-    codingQuizDiv.appendChild(boardContainer);
+    displayScoreBoard.appendChild(boardContainer);
 
 
     clearInterval(timer)
