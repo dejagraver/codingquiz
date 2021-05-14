@@ -176,6 +176,7 @@ function scoreBoard() {
     enterHighScore.setAttribute("placeholder", "Enter Initials");
    
     var saveButton = document.createElement("button");
+
     saveButton.textContent = "Save";
     saveButton.className = ".score-button";
 
