@@ -71,6 +71,7 @@ function endQuizTimer(){
 //have a function solely for displaying the questions that have been stored in the object above 
 //grab current question and update the different portions of that div as questions are answered 
 
+
 function displayQuestions() {
     //create container to display the question
     document.getElementById("click").style.display = "none"
@@ -110,30 +111,19 @@ document.getElementById("click").addEventListener('click', startQuizTimer);
 function checkAnswer(event) {
     if (event.target.textContent === questions[currentQuestion].a){
         alert("correct")
-        setScore();
-        console.log(setScore());
+        // setScore();
+        // console.log(setScore());
     } else if (currentQuestion === questions.length-1) {
-        scoreBoard();
+        displayScoreBoard();
     } else {
         currentQuestion++;
         displayQuestions();
-        setScore();
+        // setScore();
         time-= 10;
     };
     
 }
 
-
-function setScore(){
-    localStorage.setItem("scores", JSON.stringify(highScore));
-}
-function getScore(){
-    var setScore = localStorage.getItem("scores");
-
-    if(!setScore){ highScore = [];}
-   
-    highScore = JSON.parse(setScore);
-}
 
 
 //clear out any of the previous questions option
@@ -158,38 +148,84 @@ function getScore(){
 
 //Timer for when you end the game 
 
-function scoreBoard() {
+function displayScoreBoard() {
     document.querySelector(".quiz").remove();
     document.querySelector(".questions").remove();
 
-    var displayScoreBoard = document.querySelector(".quiz");
+    var scoreBoard = document.querySelector(".score-board");
 
     var boardContainer = document.createElement("div");
     boardContainer.className = "board-container";
 
-    var highScore = document.createElement("label");
-    highScore.textContent = "High Score: ";
+    var highScoreLabel = document.createElement("label");
+    highScoreLabel.textContent = "High Score: ";
 
-    var enterHighScore = document.createElement("input");
-    enterHighScore.className = "enter-name";
-    enterHighScore.setAttribute("type", "text");
-    enterHighScore.setAttribute("placeholder", "Enter Initials");
+    var enterName = document.createElement("input");
+    enterName.className = "enter-name";
+    enterName.setAttribute("type", "text");
+    enterName.setAttribute("placeholder", "Enter Initials");
    
     var saveButton = document.createElement("button");
+    saveButton.setAttribute("id", "saveClick");
 
     saveButton.textContent = "Save";
     saveButton.className = ".score-button";
 
-    boardContainer.appendChild(enterHighScore);   
-    boardContainer.appendChild(highScore);
+    boardContainer.appendChild(enterName);   
+    boardContainer.appendChild(highScoreLabel);
     boardContainer.appendChild(saveButton); 
-    displayScoreBoard.appendChild(boardContainer);
+    scoreBoard.appendChild(boardContainer);
 
+    var savedHighScores = localStorage.getItem("high scores");
+    if (savedHighScores === null) {
+        return;
+    }
+
+    var storedHighScores = JSON.parse(savedHighScores);
 
     clearInterval(timer)
 // overview of the quiz results where youll input the name tag
 // followed by a onclick the button html tag
 }
+
+function saveScoreBoard() {
+//    var name = document.querySelector("input").value;
+//    var timeRemaining = {name: name, timeRemaining: time}
+
+   var getScore = localStorage.getItem("scores");
+    var highScore;
+
+    if (getScore === null) {
+        scoresArray = [];
+    } else {
+        scoresArray = JSON.parse(getScore)
+    }
+
+    var finalScore = {
+        initials: initialInput.value,
+        score: finalScore.textContent
+    };
+
+    highScore.push(finalScore);
+
+    // stringify array in order to store in local
+    var setScore = JSON.stringify(highScore);
+    window.localStorage.setItem("scores", setScore);
+}
+
+// function setScore(){
+//     localStorage.setItem("scores", JSON.stringify(highScore));
+// }
+// function getScore(){
+//     var setScore = localStorage.getItem("scores");
+
+//     if(!setScore){ highScore = [];}
+   
+//     highScore = JSON.parse(setScore);
+// }
+
+// document.getElementById("saveClick").addEventListener('saveClick', ;
+
 
 //getting the object of questions and asnwers into my page 
 //document.getelemnt by id/queryselctor etc... pop in the object value 
