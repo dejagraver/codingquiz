@@ -16,6 +16,7 @@
  https://github.com/dejagraver/codingquiz
   <br />
 
+![image](https://user-images.githubusercontent.com/78667882/121270292-70022780-c88f-11eb-87bc-620cfe77d509.png)
 
   #Questions <br />
   Contact the owner of the Repository for additional questions through:
