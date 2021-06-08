@@ -13,7 +13,10 @@
   <br />
 
  <a name="Links">#Links</a>
- https://github.com/dejagraver/codingquiz
+ Was unable to get the high score functionality to work, if I have more time before the end of the course. I will revisit 
+
+https://dejagraver.github.io/codingquiz/
+https://github.com/dejagraver/codingquiz
   <br />
 
 ![image](https://user-images.githubusercontent.com/78667882/121270292-70022780-c88f-11eb-87bc-620cfe77d509.png)
